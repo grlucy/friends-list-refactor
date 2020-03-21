@@ -9,6 +9,12 @@ class App extends React.Component {
     friends
   };
 
+  //define a method inside of `App` which accepts an `id` parameter, and then utilize filter to create a new array of friends without the passed `id`. Then set `this.state.friends` to this new filtered array
+  removeFriend = id => {
+    const friends = this.state.friends.filter(friend => friend.id !== id);
+    this.setState({ friends });
+  };
+
   //map over `this.state.friends` to render each `FriendCard` component
   render() {
     return (
@@ -20,6 +26,9 @@ class App extends React.Component {
             image={friends.image}
             occupation={friends.occupation}
             location={friends.location}
+            id={friends.id}
+            key={friends.id}
+            remove={this.removeFriend}
           />
         ))}
       </Wrapper>
